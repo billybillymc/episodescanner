@@ -7,6 +7,7 @@ import time
 import re
 import json
 chrome_options = Options()
+chromedriver_autoinstaller.install()
 chrome_options.add_argument("--headless")
 driver = webdriver.Chrome(options=chrome_options)
 months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug', 'Sep', "Oct", "Nov", "Dec"]
