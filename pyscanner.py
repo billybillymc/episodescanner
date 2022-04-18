@@ -30,16 +30,16 @@ for i in range(1,34):
             for t in months:
                 if re.findall(f"{t} \d+, \d+",count.text) != []:
                     new_date=re.findall(f"{t} \d+, \d+",count.text)
+                    dates.append(new_date[0])
                     break
-            dates.append(new_date[0])
     except:
         pass
     for count in driver.find_elements_by_xpath("//span[@class='style-scope ytd-video-meta-block']"):
         for t in months:
             if re.findall(f"{t} \d+, \d+",count.text) != []:
                 new_date=re.findall(f"{t} \d+, \d+",count.text)
+                dates.append(new_date[0])
                 break
-        dates.append(new_date[0])
     p=[]
     p=[*range(0,length)]
     for final in range(0,length):
