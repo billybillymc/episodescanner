@@ -1,3 +1,4 @@
+from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.common.keys import Keys
@@ -6,6 +7,7 @@ from selenium.webdriver.common.keys import Keys
 import time
 import re
 import json
+import os
 chrome_options = Options()
 chromedriver_autoinstaller.install()
 chrome_options.add_argument("--headless")
@@ -15,7 +17,6 @@ for i in range(1,34):
     dates=[]
     titles=[]
     runtimes=[]
-    tt=tt+1
     driver.get(f"https://www.youtube.com/show/SCSKE3leoX9KNm23E0nkTSFA?season={i}")
     driver.find_element_by_tag_name('body').send_keys(Keys.END)
     driver.find_element_by_tag_name('body').send_keys(Keys.END)
@@ -48,6 +49,10 @@ for i in range(1,34):
                 new_date=re.findall(f"{t} \d+, \d+",count.text)
                 dates.append(new_date[0])
                 break
+    path = 'C:/Users/mcint/py/Outputs/' + str(i)
+    isdir = os.path.isdir(path)
+    if isdir == False:
+        os.makedirs(path)
     for final in range(0,length):
         data={"number of episode":final+1,"date":dates[final],"runtime":runtimes[final],"episode_name":titles[final]}
         with open(f"outputs/{i}/{final+1}.json",'w+') as f:
